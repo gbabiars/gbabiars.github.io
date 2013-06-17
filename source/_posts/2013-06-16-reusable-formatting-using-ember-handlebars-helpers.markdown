@@ -123,4 +123,6 @@ Another scenario is when we want to display a default message or value in place 
 
 There may be many more domain specific use cases in your applications as well.  The best part is that they are usually trivial to implement.
 
+The repo for the date examples can be seen [here](https://github.com/gbabiars/bulletin-board-ember-helpers).
+
 For more information on Handlebars helpers, check out the [documentation](http://emberjs.com/guides/templates/writing-helpers/).
