@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ember | Greg Babiars' Blog]]></title>
   <link href="http://yoursite.com/blog/categories/ember/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2013-06-16T19:22:29-05:00</updated>
+  <updated>2013-06-16T22:15:25-05:00</updated>
   <id>http://yoursite.com/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -251,6 +251,8 @@
 <h3>And More&hellip;</h3>
 
 <p>There may be many more domain specific use cases in your applications as well.  The best part is that they are usually trivial to implement.</p>
+
+<p>The repo for the date examples can be seen <a href="https://github.com/gbabiars/bulletin-board-ember-helpers">here</a>.</p>
 
 <p>For more information on Handlebars helpers, check out the <a href="http://emberjs.com/guides/templates/writing-helpers/">documentation</a>.</p>
 ]]></content>
