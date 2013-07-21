@@ -3,7 +3,7 @@ layout: post
 title: "Write Prefix-free CSS using Grunt"
 date: 2013-07-21 14:30
 comments: true
-categories: 
+categories: [grunt, css]
 ---
 One of the most painful parts about using newer CSS3 features is the amount of prefixed styles that must be written in order to support the wide range of browsers out there.  There are many ways to alleviate this pain, including preprocessor mixins.  One of the best ways I've found to eliminate this altogether is to have the prefix generation automated into your build process.  By moving prefixing to this automation step, we can write more maintainable css that will also be easier to update with future browser changes.
 
