@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ember | Greg Babiars' Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/ember/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-07-21T16:53:34-05:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://gregbabiars.com/blog/categories/ember/atom.xml" rel="self"/>
+  <link href="http://gregbabiars.com/"/>
+  <updated>2013-07-21T17:20:24-05:00</updated>
+  <id>http://gregbabiars.com/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Reusable Formatting Using Ember Handlebars Helpers]]></title>
-    <link href="http://yoursite.com/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/"/>
+    <link href="http://gregbabiars.com/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/"/>
     <updated>2013-06-16T20:00:00-05:00</updated>
-    <id>http://yoursite.com/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers</id>
+    <id>http://gregbabiars.com/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers</id>
     <content type="html"><![CDATA[<p>One of the great things about Ember is that it uses Handlebars as its default template engine.  Handlebars allows you to create a very declarative yet powerful UI through it&rsquo;s built in helpers like <code>{{each}}</code> and <code>{{if}}</code>.  Ember has also extended Handlebars with helpers like <code>{{view}}</code> and <code>{{render}}</code> as well.  While these helpers go a long way, Ember allows us to easily create our own custom helpers.  This allows us to build a UI that is very expressive while also DRYing up our application.  A great way to utilize this feature is by moving common formatting of values and types into helpers.</p>
 
 <h3>Date Formatting</h3>
