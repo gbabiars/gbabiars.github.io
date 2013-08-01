@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://gregbabiars.com/sitemap.xml 
+Sitemap: http://gbabiars.github.io/sitemap.xml 
