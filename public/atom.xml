@@ -4,7 +4,7 @@
   <title><![CDATA[Greg Babiars' Blog]]></title>
   <link href="http://gbabiars.github.io/atom.xml" rel="self"/>
   <link href="http://gbabiars.github.io/"/>
-  <updated>2013-08-04T05:13:52-05:00</updated>
+  <updated>2013-08-10T23:49:31-05:00</updated>
   <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -12,6 +12,106 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ember.js: Resolving Embedded Models in Nested Routes]]></title>
+    <link href="http://gbabiars.github.io/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes/"/>
+    <updated>2013-08-10T17:31:00-05:00</updated>
+    <id>http://gbabiars.github.io/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes</id>
+    <content type="html"><![CDATA[<p>I recently ran into a roadblock with Ember and Ember Data where I was trying to access an embedded model for a nested route.  What I wanted to do was return one of the elements of an array in the model from the parent route as my model for the nested route.  The solution ended up being fairly simple.</p>
+
+<p>My route definitions looked as such:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">resource</span><span class="p">(</span><span class="s1">&#39;editGame&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/editable-games/edit/:editableGame_id&#39;</span> <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">resource</span><span class="p">(</span><span class="s1">&#39;editGameRound&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/:round&#39;</span> <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And my models were defined as:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditableGame</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">rounds</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">hasMany</span><span class="p">(</span><span class="s1">&#39;App.EditableBoard&#39;</span><span class="p">),</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditableBoard</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">round</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It was easy enough to load the model for the EditGame route, but for the EditGameRound route I wanted to return one of the rounds from the parent EditGame model based on which round was passed into the route.</p>
+
+<p>The model function on Ember.Route gives us the Transition object as a second parameter.  From this transition object, we have access to &ldquo;resolvedModels&rdquo; which includes the resolved model from our parent route.  So to get access to the embedded EditableBoard from the EditableGame model, we just need to access the resolved model by route name:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">roundNames</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="mi">1</span><span class="o">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="mi">2</span><span class="o">:</span> <span class="s1">&#39;second&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditGameRoundRoute</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">{</span> <span class="nx">round</span><span class="o">:</span> <span class="nx">roundNames</span><span class="p">[</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;round&#39;</span><span class="p">)]</span> <span class="o">||</span><span class="s1">&#39;final&#39;</span> <span class="p">};</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">model</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">transition</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">transition</span><span class="p">.</span><span class="nx">resolvedModels</span><span class="p">.</span><span class="nx">editGame</span><span class="p">,</span>
+</span><span class='line'>            <span class="nx">round</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">round</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">round</span> <span class="o">===</span> <span class="s1">&#39;first&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">game</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rounds&#39;</span><span class="p">).</span><span class="nx">objectAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">round</span> <span class="o">===</span> <span class="s1">&#39;second&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">game</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rounds&#39;</span><span class="p">).</span><span class="nx">objectAt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that I accessed the game by the parent route&rsquo;s name (editGame).  This made it very simple to find and return my embedded model and return it as the model of the nested route.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Grunt As Your Front End Dev Server]]></title>
