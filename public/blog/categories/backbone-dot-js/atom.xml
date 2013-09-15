@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: backbone.js | Greg Babiars]]></title>
-  <link href="http://gregbabiars.com/blog/categories/backbone-dot-js/atom.xml" rel="self"/>
-  <link href="http://gregbabiars.com/"/>
-  <updated>2013-09-03T18:30:40-05:00</updated>
-  <id>http://gregbabiars.com/</id>
+  <link href="http://gbabiars.github.io/blog/categories/backbone-dot-js/atom.xml" rel="self"/>
+  <link href="http://gbabiars.github.io/"/>
+  <updated>2013-09-15T00:04:58-05:00</updated>
+  <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
-    
+    <email><![CDATA[gbabiars@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[The Myths of Backbone.js]]></title>
-    <link href="http://gregbabiars.com/blog/2013/08/01/the-myths-of-backbone-dot-js/"/>
+    <link href="http://gbabiars.github.io/blog/2013/08/01/the-myths-of-backbone-dot-js/"/>
     <updated>2013-08-01T20:00:00-05:00</updated>
-    <id>http://gregbabiars.com/blog/2013/08/01/the-myths-of-backbone-dot-js</id>
+    <id>http://gbabiars.github.io/blog/2013/08/01/the-myths-of-backbone-dot-js</id>
     <content type="html"><![CDATA[<p>When it comes to building javascript centric web apps, it&rsquo;s hard to argue with the popularity of Backbone.  It has played a big part in shifting client side javascript apps from being jQuery spaghetti to well structured, more maintainable pieces of software.  It has helped move developers away from &ldquo;truth in DOM&rdquo; and towards keeping record stores in the javascript application itself.  While it has done so much, an amazing achievement for such a relatively small library, there is a lot of misinformation about Backbone that exists in the web community.</p>
 
 <p>As a preface, I do use Backbone on a daily basis and both appreciate it for the simplicity and functionality it provides, while also wishing for more at times.  Developers who have used Backbone on a regular basis and have built non-trivial applications have also felt this pain.  These are simply some of the myths I feel exist about Backbone.</p>

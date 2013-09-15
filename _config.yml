@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://gbabiars.github.io
-title: Greg Babiars' Blog
-subtitle: Random thoughts of a web developer
+title: Greg Babiars
+subtitle:
 author: Greg Babiars
 simple_search: http://google.com/search
-description:
+description: I'm a software developer with a front end focus living in Panama City, FL.  I'm passionate about javascript and web technologies and a diehard Arizona Wildcats fan.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: gbabiars@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -94,7 +94,12 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-43757005-1
 
 # Facebook Like
 facebook_like: false
+
+social:
+  github: gbabiars
+  twitter: gbabiars
+  googleplus: gbabiars

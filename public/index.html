@@ -1,172 +1,839 @@
 
+<!DOCTYPE HTML>
 
-<!doctype html>
-  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-  <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the title for you homepage - Greg Babiars</title>
-    <meta name="author" content="Greg Babiars">
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Greg Babiars</title>
+	<meta name="author" content="Greg Babiars">
+
+	
+	<meta name="description" content="Aug 10th, 2013 ember.js Ember.js: Resolving Embedded Models in Nested Routes I recently ran into a roadblock with Ember and Ember Data where I was &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Greg Babiars" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://gbabiars.github.io/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     
-    <meta name="description" content="Hear no evil Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, facilis illo magni nobis ea quibusdam blanditiis officia ex dolorum &hellip;">
-    
-    <meta name="viewport" content="width=device-width">
-    
-    <link rel="canonical" href="http://gregbabiars.com">
-    <link href="/favicon.png" rel="icon">
-    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet">
-    <link href="/atom.xml" rel="alternate" title="Greg Babiars" type="application/atom+xml">
-  </head>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-43757005-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
-  <body >
+    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-    <header>
-      <div class="grid-wrapper">
-  <div class="grid">
+</head>
 
-    <div class="grid__item two-fifths lap-four-sixths palm-one-whole">
-  <a href="/" class="site-title">Greg Babiars</a>
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("gbabiars@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
 </div>
+<hgroup>
+  <h1><a href="/">Greg Babiars</a></h1>
+  
+</hgroup>
 
-<div class="grid__item three-fifths lap-two-sixths palm-one-whole">
-  <nav>
-    <input type="checkbox" id="toggle">
-<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu"></label>
-<ul class="menu pull-right">
-  <!--<li><a href="/">Home</a></li>-->
-  <!--<li><a href="/blog/">Blog</a></li>-->
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
 </ul>
-  </nav>
-</div>
 
-  </div>
-</div>
-    </header>
 
+<section class="aboutme">
+  <p>
+    I'm a software developer with a front end focus living in Panama City, FL.  I'm passionate about javascript and web technologies and a diehard Arizona Wildcats fan.
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/gbabiars" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/gbabiars" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+<div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T17:31:00-05:00" data-updated="true" itemprop="datePublished">Aug 10<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ember-dot-js/'>ember.js</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes/" itemprop="url">Ember.js: Resolving Embedded Models in Nested Routes</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>I recently ran into a roadblock with Ember and Ember Data where I was trying to access an embedded model for a nested route.  What I wanted to do was return one of the elements of an array in the model from the parent route as my model for the nested route.  The solution ended up being fairly simple.</p>
+
+<p>My route definitions looked as such:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">resource</span><span class="p">(</span><span class="s1">&#39;editGame&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/editable-games/edit/:editableGame_id&#39;</span> <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">resource</span><span class="p">(</span><span class="s1">&#39;editGameRound&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/:round&#39;</span> <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And my models were defined as:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditableGame</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">rounds</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">hasMany</span><span class="p">(</span><span class="s1">&#39;App.EditableBoard&#39;</span><span class="p">),</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditableBoard</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">round</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It was easy enough to load the model for the EditGame route, but for the EditGameRound route I wanted to return one of the rounds from the parent EditGame model based on which round was passed into the route.</p>
+
+<p>The model function on Ember.Route gives us the Transition object as a second parameter.  From this transition object, we have access to &ldquo;resolvedModels&rdquo; which includes the resolved model from our parent route.  So to get access to the embedded EditableBoard from the EditableGame model, we just need to access the resolved model by route name:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">roundNames</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="mi">1</span><span class="o">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="mi">2</span><span class="o">:</span> <span class="s1">&#39;second&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">EditGameRoundRoute</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">Route</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">{</span> <span class="nx">round</span><span class="o">:</span> <span class="nx">roundNames</span><span class="p">[</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;round&#39;</span><span class="p">)]</span> <span class="o">||</span><span class="s1">&#39;final&#39;</span> <span class="p">};</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">model</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">transition</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">transition</span><span class="p">.</span><span class="nx">resolvedModels</span><span class="p">.</span><span class="nx">editGame</span><span class="p">,</span>
+</span><span class='line'>            <span class="nx">round</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">round</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">round</span> <span class="o">===</span> <span class="s1">&#39;first&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">game</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rounds&#39;</span><span class="p">).</span><span class="nx">objectAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">round</span> <span class="o">===</span> <span class="s1">&#39;second&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">game</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rounds&#39;</span><span class="p">).</span><span class="nx">objectAt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that I accessed the game by the parent route&rsquo;s name (editGame).  This made it very simple to find and return my embedded model and return it as the model of the nested route.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-04T03:35:00-05:00" data-updated="true" itemprop="datePublished">Aug 4<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/grunt/'>grunt</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/" itemprop="url">Using Grunt as Your Front End Dev Server</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h2>Need for Front End Seperation</h2>
+
+<p>For many large development projects, there is a need to seperate the front and back end development into two different projects.  The benefit here for the front end team is that they can work in html, javascript and css without having to worry about compiling new builds.  One issue that must be faced when doing this is making sure the local development enviroment can both server local static files and also connect to services that ajax calls will be connecting to.  For us, this meant serving up our backbone app while connecting to an api on one of several VMs. Originially, we used XAMPP on each devs machine to serve up the files.  The downsides of this are that it requires each machine to be manually configured and the config is not stored in the projects version control repositiory.</p>
+
+<h2>Using Grunt Instead</h2>
+
+<p>Grunt&rsquo;s wide range of makes it easy to create a dev server to both serve up our static files as well as proxy to our services.  Using <a href="https://github.com/gruntjs/grunt-contrib-connect">grunt-contrib-connect</a>, we created a simple task to serve our project&rsquo;s static files.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">connect</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s1">&#39;static&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">hostname</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">port</span><span class="o">:</span> <span class="mi">8001</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This task just simply serves up static files to localhost:8001 using the folder our Gruntfile.js is in as the root directory.  While this was easy enough, we still need to get it to connect to our api.  In order to do this, we need a proxy server to proxy our local service calls to the correct remote server.  Luckily there is a great project called <a href="https://github.com/drewzboto/grunt-connect-proxy">grunt-connect-proxy</a> that allows us to modify our connect configuration to specify which service calls we want to proxy and to where.  Here is the resulting modifications we&rsquo;ve made.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">connect</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s1">&#39;static&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">hostname</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">port</span><span class="o">:</span> <span class="mi">8001</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">server</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">hostname</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">port</span><span class="o">:</span> <span class="mi">8000</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">middleware</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">connect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="k">return</span> <span class="p">[</span><span class="nx">proxySnippet</span><span class="p">];</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">proxies</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/svc&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;myserviceshost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">8080</span>               
+</span><span class='line'>          <span class="p">},</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/api&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;myapihost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">9080</span>
+</span><span class='line'>          <span class="p">},</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">8001</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At the top of our Gruntfile, we declare our proxySnippit:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">proxySnippet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;grunt-connect-proxy/lib/utils&#39;</span><span class="p">).</span><span class="nx">proxyRequest</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are a few things to notice in our config.  First, we&rsquo;ve added a second connect task called server.  This will run at localhost:8000 and will encompass both our static files and our service urls.  We add a middleware function to make sure we run the proxySnippet provided by grunt-connect-proxy.  We&rsquo;ve added a proxies array which defines what urls are proxied where.  We&rsquo;ve defined three proxies.  Calls to <a href="http://localhost:8000/svc*">http://localhost:8000/svc*</a> will be proxied to <a href="http://myserviceshost:8080/svc.">http://myserviceshost:8080/svc.</a>  Calls to <a href="http://localhost:8000/api*">http://localhost:8000/api*</a> will be proxied to <a href="http://localhost:9080/api.">http://localhost:9080/api.</a>  Finally, calls to <a href="http://localhost:8000/*">http://localhost:8000/*</a> will be proxied to <a href="http://localhost:8001.">http://localhost:8001.</a>  This last proxy makes sure that our static files are served from our &ldquo;static&rdquo; connect task.  Notice that the context property in each proxy tells us which urls to look for.  I have noticed that order is important here, going from highest priority to lowest.  We define &lsquo;/&rsquo; last so that the other service calls will take priority.</p>
+
+<p>Now that we have configured our connect task, we need to register a new task that will put this all together.  Here is what it will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;connect:static&#39;</span><span class="p">,</span> <span class="s1">&#39;configureProxies:server&#39;</span><span class="p">,</span> <span class="s1">&#39;connect:server&#39;</span><span class="p">,</span> <span class="s1">&#39;watch&#39;</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Running <code>grunt server</code> will start our static server at localhost:8001, configure our proxies defined in our proxies options array, then start the server at localhost:8000.  Lastly we add a watch task using <a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a> to keep our server running.  Now if we go to <a href="http://localhost:8000,">http://localhost:8000,</a> we will have our development server with our local html/javascript/css files while still using the correct remote service calls!  And we can commit this to source control so no manual configuration is needed.</p>
+
+<h2>Taking it Further</h2>
+
+<p>While connecting to remote services was our main goal, we can also create new configurations to cover other use cases.  For example, during new development our remote server may not have services that we need.  Rather than wait for the backend to implement these to start our development, we instead point to fake servers running locally (using node).  Using the same configuration logic as we had for our server task, we can create a fakeServer task that proxies to our fake local services.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">// in the connect task...</span>
+</span><span class='line'>  <span class="nx">fakeServer</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">hostname</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">port</span><span class="o">:</span> <span class="mi">8000</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">middleware</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">connect</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="k">return</span> <span class="p">[</span><span class="nx">proxySnippet</span><span class="p">];</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">proxies</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/svc&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">8080</span>               
+</span><span class='line'>          <span class="p">},</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/api&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">9080</span>
+</span><span class='line'>          <span class="p">},</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="nx">context</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">port</span><span class="o">:</span> <span class="mi">8001</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="c1">// we register the fakeServer task</span>
+</span><span class='line'><span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;fakeServer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;connect:static&#39;</span><span class="p">,</span> <span class="s1">&#39;configureProxies:fakeServer&#39;</span><span class="p">,</span> <span class="s1">&#39;connect:fakeServer&#39;</span><span class="p">,</span> <span class="s1">&#39;watch&#39;</span><span class="p">]);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now if we run <code>grunt fakeServer</code> we can use the fake services to develop locally, then when the real backend services are ready, we can test against them.  The added benefit here is that we may want to test many different use cases such as an endpoint returning no data or error handling.  This is really easy to do on our fake server without affecting production code.</p>
+
+<h2>Putting It All Together</h2>
+
+<p>To see the full example, check out this <a href="https://gist.github.com/gbabiars/6149943">gist</a>.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-01T20:00:00-05:00" data-updated="true" itemprop="datePublished">Aug 1<span>st</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/backbone-dot-js/'>backbone.js</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/01/the-myths-of-backbone-dot-js/" itemprop="url">The Myths of Backbone.js</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>When it comes to building javascript centric web apps, it&rsquo;s hard to argue with the popularity of Backbone.  It has played a big part in shifting client side javascript apps from being jQuery spaghetti to well structured, more maintainable pieces of software.  It has helped move developers away from &ldquo;truth in DOM&rdquo; and towards keeping record stores in the javascript application itself.  While it has done so much, an amazing achievement for such a relatively small library, there is a lot of misinformation about Backbone that exists in the web community.</p>
+
+<p>As a preface, I do use Backbone on a daily basis and both appreciate it for the simplicity and functionality it provides, while also wishing for more at times.  Developers who have used Backbone on a regular basis and have built non-trivial applications have also felt this pain.  These are simply some of the myths I feel exist about Backbone.</p>
+
+<h2>It is a framework</h2>
+
+<p>If you read any blog posts or see any getting started guides, you&rsquo;ll more than likely hear Backbone referred to as a &ldquo;framework&rdquo;.  This is something I disagree with strongly, as Backbone is much more of a library than a framework.  This is not a knock on Backbone, in fact Backbone is a library that gives you the pieces to create your own framework.  It has many of the same components you&rsquo;d expect to see in a framework (models, views, router), but if you take away the router, you&rsquo;ll see what you are given are building blocks.  Frameworks will wire things up for you, whether through configuration or convention, but Backbone leaves it up to you to figure out how to wire up your application.  This allows it to be very flexible, but also places great responsibilities on the developers using it.</p>
+
+<h2>It is easy to learn</h2>
+
+<p>This is one of the most common claims when people evaluate Backbone.  There is no question that the core of Backbone, particularly the models, collections and views, is easy to learn.  The difficulty instead lies in figuring out how to get all the pieces to work together.  Backbone&rsquo;s difficulty ramps up as your application get&rsquo;s more complex.  How do you manage child views?  What about aggregates that depend on multiple collections?  What about cleaning up your views to prevent zombie events?  Backbone&rsquo;s unopinionated approach gives you very little guidance on how to solve these situations, therefore it is up to the developer to learn patterns used in the Backbone community or try to figure it out themselves.  One great thing about Backbone&rsquo;s popularity is that most of these problems are solved and many libraries exist that do the work for you (i.e. <a href="http://marionettejs.com/">Marrionette.js</a>).</p>
+
+<h2>It is lightweight</h2>
+
+<p>The library itself is only 6.3k, but it lacks any boilerplate code.  This means you will either be writing this yourself or using 3rd party libraries.  Much of this depends on the use case, but you can often end up with the same total size application with Backbone as you would had you used one of the larger frameworks.</p>
+
+<h2>It is better/worse than…</h2>
+
+<p>Insert a framework or library here.  Backbone vs. Angular? or vs. Ember?  What about compared to Knockout?  It has become very common to see comparisons between the different libraries and frameworks looking for a winner.  Unfortunately most of these comparisons are apples and oranges.  Besides that, there is plenty of room for many solutions to the wide range application needs that exist.  It is important to understand the different features and pitfalls of using each solution so that you or your team can make the best choice for your projects.</p>
+
+<h2>…but in the end…</h2>
+
+<p>Backbone is still a good choice when building client side javascript applications, but you should understand what it gives you and what you have to do yourself.  Luckily Backbone&rsquo;s popularity has led to a large plugin ecosystem that solve most of the common problems.  In the end, if you are going to use Backbone, expect to have to make some serious architectural decisions and write boilerplate code.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-21T14:30:00-05:00" data-updated="true" itemprop="datePublished">Jul 21<span>st</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/grunt/'>grunt</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/21/write-prefix-free-css-using-grunt/" itemprop="url">Write Prefix-free CSS Using Grunt</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>One of the most painful parts about using newer CSS3 features is the amount of prefixed styles that must be written in order to support the wide range of browsers out there.  There are many ways to alleviate this pain, including preprocessor mixins.  One of the best ways I&rsquo;ve found to eliminate this altogether is to have the prefix generation automated into your build process.  By moving prefixing to this automation step, we can write more maintainable css that will also be easier to update with future browser changes.</p>
+
+<h2>Automating using Grunt</h2>
+
+<p>My build tool of choice is Grunt, particularly because of the large number of task plugins available.  One such plugin is available for automating prefix generation of css, called <a href="https://github.com/nDmitry/grunt-autoprefixer">grunt-autoprefixer</a>.  To make use of it, we simply need to point to the files we want to generate and the prefixed css will be generated.</p>
+
+<p>Our Grunt snippet:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">autoprefixer</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">browsers</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;last 2 versions&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nx">dist</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="s1">&#39;css/dist/styles.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;css/src/styles.css&#39;</span><span class="p">]</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Example of css with flexbox:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.column</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The resulting css generated by autoprefixer:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.column</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">flex</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">flexbox</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, the css we write is much simpler than the generated css and we no longer have to worry ourselves with maintaining prefixes as browser support changes.  Updating our css is as simple as rerunning our Grunt task.</p>
+
+<p>You can modify which browsers are supported by changing the browser array in the grunt-autoprefixer options.  For more documentation, check out the <a href="https://github.com/nDmitry/grunt-autoprefixer">github repo</a>.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-16T20:00:00-05:00" data-updated="true" itemprop="datePublished">Jun 16<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ember/'>ember</a>, <a class='category' href='/blog/categories/handlebars/'>handlebars</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/" itemprop="url">Reusable Formatting Using Ember Handlebars Helpers</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>One of the great things about Ember is that it uses Handlebars as its default template engine.  Handlebars allows you to create a very declarative yet powerful UI through it&rsquo;s built in helpers like <code>{{each}}</code> and <code>{{if}}</code>.  Ember has also extended Handlebars with helpers like <code>{{view}}</code> and <code>{{render}}</code> as well.  While these helpers go a long way, Ember allows us to easily create our own custom helpers.  This allows us to build a UI that is very expressive while also DRYing up our application.  A great way to utilize this feature is by moving common formatting of values and types into helpers.</p>
+
+<h3>Date Formatting</h3>
+
+<p>To demonstrate how this can be beneficial, let&rsquo;s take a look at a pretty common task in applications: formatting dates.  The formatting logic can often be spread throughout the application without consistency.  We can clean this up by moving the formatting out of the models, controllers and views and into our custom helpers which we can reuse in different contexts.</p>
+
+<p>For this example, we&rsquo;ll take the idea of a simple bulletin board system with Posts and Users.  The application will have three views: list of Posts, Post details and User details.  Our models will look like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">createdAt</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">lastOnlineAt</span><span class="o">:</span> <span class="kc">null</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">App</span><span class="p">.</span><span class="nx">Post</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">createdAt</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">lastUpdatedAt</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">lastReadAt</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">authorName</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">authorId</span><span class="o">:</span> <span class="kc">null</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For each post and user we have two dates.  We want to render these dates in our templates.</p>
+
+<h3>Let&rsquo;s Update our Models</h3>
+
+<p>Before we jump into helpers, let&rsquo;s handle the formatting within our models.  We can create computed properties on the model, such as:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>   <span class="nx">createdAtPrettyFormat</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">moment</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">)).</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;MMM Do YYYY h:mm A&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}.</span><span class="nx">property</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but we&rsquo;d quickly be duplicating our code.  First, if we decide we want to have the same date formatted differently in different views (i.e. having it without the time on the posts list, but with on the post details) we would have to create a different computed property for each format.  Secondly, we may have the same format for multiple dates and we would have to create different computed properties for each.</p>
+
+<h3>Helpers to the Rescue</h3>
+
+<p>A better solution is to move the formatting to a Handlebars helper.  For this example we are going to create two different helpers, one for relative dates and one for the full formatted date.  First we need to register our helpers:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="nx">Em</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;relativeDate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">Em</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;prettyDate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;MMM Do, YYYY h:mm A&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The helper method takes in two parameters: the name of the helper and and the value that we want to format.  Typically the logic here should be very simple, in this case we are just returning the date value as a formatted string.</p>
+
+<p>Next, we can use utilize these helpers within our templates.</p>
+
+<p>Posts List:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>  {{#each model}}
+</span><span class='line'>      <span class="nt">&lt;li&gt;</span>{{#linkTo post this}}{{title}}{{/linkTo}} - {{relativeDate createdAt}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>  {{/each}}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Post Details:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;h3&gt;</span>{{title}}<span class="nt">&lt;/h3&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>Posted by: {{#linkTo user authorId}}{{authorName}}{{/linkTo}} at {{prettyDate createdAt}}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>{{body}}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>Last Updated {{relativeDate lastUpdatedAt}}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>User Details:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'> <span class="nt">&lt;h3&gt;</span>{{name}}<span class="nt">&lt;/h3&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>User since {{prettyDate createdAt}}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>Last online {{relativeDate lastOnlineAt}}<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Even though these are very simple views, we have gained a lot of reuse and provided consistency to the formats.  An added benefit is that the markup is very readable and obvious what format each date will be rendered as.  And the best part is that the values are bound, so when a date is updated in our model the formatted date is updated too.</p>
+
+<h3>Number Formatting</h3>
+
+<p>Formatting of numerical values is another place where helpers make sense, whether it is currency, percentages or placing commas. Here an example of a helper that displays as percent:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="nx">Em</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;percent&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="s1">&#39; %&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Default Values</h3>
+
+<p>Another scenario is when we want to display a default message or value in place of a null or empty value.  This is easily done using a helper like the following:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="nx">Em</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s1">&#39;There is no value to display.&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>And More&hellip;</h3>
+
+<p>There may be many more domain specific use cases in your applications as well.  The best part is that they are usually trivial to implement.</p>
+
+<p>The repo for the date examples can be seen <a href="https://github.com/gbabiars/bulletin-board-ember-helpers">here</a>.</p>
+
+<p>For more information on Handlebars helpers, check out the <a href="http://emberjs.com/guides/templates/writing-helpers/">documentation</a>.</p>
+
+		
+		
+	</div>
+
+</article>
+
+</div>
+<nav id="pagenavi">
     
-      <div class="hero" style="background-image: url('/images/cliffs_of_moher.jpg');">
-  <div class="grid-wrapper">
-    <div class="grid flex">
-      <div class="grid__item flex__item two-fifths palm-one-whole avatar">
-        <img class="gravatar" src="/images/gravatar.jpg" alt="Greg Babiars's Picture">
-      </div>
-      <div class="grid__item flex__item three-fifths palm-one-whole">
-        <h1>Greg Babiars</h1>
-        <hr>
-        <p class="lead">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="credit">
-    <p>
-      Cliffs of Moher, by <a href="http://www.flickr.com/photos/alfarese/2780612581/" target="_blank">Alessandro Farese</a> <a href="http://creativecommons.org/licenses/by-nc-nd/2.0/deed.en" target="_blank" class="licence"><small>(by-nc-nd)</small></a>
-    </p>
-  </div>
-</div>
-
     
-
-    <div class="grid-wrapper">
-      <div class="grid grid-center">
-        
-        <div class="grid__item one-whole">
-        
-
-          
-
-<div class="grid-wrapper">
-  <div class="grid">
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-laptop"></i>
-          </span>
-        </div>
-
-        <div class="grid__item one-whole lap-two-thirds">
-          <h2 class="title">Hear no evil</h2>
-          <hr>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, facilis illo magni nobis ea quibusdam blanditiis officia ex dolorum laboriosam dolor earum inventore aperiam nam molestiae. Aperiam, est temporibus officiis.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-search"></i>
-          </span>
-        </div>
-
-        <div class="grid__item one-whole lap-two-thirds">
-          <h2 class="title">See no evil</h2>
-          <hr>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, quia magni ipsum sapiente libero perspiciatis adipisci quibusdam nam nemo aut asperiores deserunt consectetur. Rem distinctio libero amet molestias saepe vero!
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid__item one-third lap-one-whole palm-one-whole usp">
-      <div class="grid">
-        <div class="grid__item one-whole lap-one-third">
-          <span class="icon">
-            <i class="icon-coffee"></i>
-          </span>
-        </div>
-
-        <div class="grid__item one-whole lap-two-thirds">
-          <h2 class="title">Speak no evil</h2>
-          <hr>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus repellendus officia iusto reiciendis quae quod consequuntur tempora. Rem, placeat laboriosam perferendis eum obcaecati illo iste molestias? Optio in expedita dolor!
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        
-        </div>
-        
-        
-      </div>
-    </div>
-    
-    <footer>
-      <div class="grid-wrapper">
-  <div class="grid">
-    <div class="grid__item">
-      <p class="copyright">
-  All content by Greg Babiars and licenced under <a href="//creativecommons.org/licenses/by-nc-sa/3.0/ie/">Creative Commons</a>.<br>
-  Code under <a href="//github.com/coogie/oscailte/blob/master/README.md">MIT Licence</a>.
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Greg Babiars -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
-    </div>
-  </div>
-</div>
 
-    </footer>
-
-    <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-<script defer src="/javascripts/octopress.js"></script>
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			
 
 
 
@@ -174,5 +841,21 @@
 
 
 
-  </body>
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+		</div>
+	</div>
+</body>
 </html>
