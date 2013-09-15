@@ -2,40 +2,52 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>
-            http://gbabiars.github.io/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/
+            http://gregbabiars.com/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/
         </loc>
-        <lastmod>2013-06-16T20:02:55-05:00</lastmod>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://gbabiars.github.io/blog/2013/07/21/write-prefix-free-css-using-grunt/</loc>
-        <lastmod>2013-07-21T16:52:16-05:00</lastmod>
+        <loc>http://gregbabiars.com/blog/2013/07/21/write-prefix-free-css-using-grunt/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://gbabiars.github.io/blog/2013/08/01/the-myths-of-backbone-dot-js/</loc>
-        <lastmod>2013-08-01T19:59:13-05:00</lastmod>
+        <loc>http://gregbabiars.com/blog/2013/08/01/the-myths-of-backbone-dot-js/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://gbabiars.github.io/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/
+            http://gregbabiars.com/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/
         </loc>
-        <lastmod>2013-08-04T05:12:45-05:00</lastmod>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://gbabiars.github.io/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes/
+            http://gregbabiars.com/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes/
         </loc>
-        <lastmod>2013-08-10T23:48:08-05:00</lastmod>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://gbabiars.github.io/blog/archives/</loc>
-        <lastmod>2013-08-10T23:48:08-05:00</lastmod>
+        <loc>http://gregbabiars.com/blog/archives/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://gbabiars.github.io/</loc>
-        <lastmod>2013-08-10T23:48:08-05:00</lastmod>
+        <loc>http://gregbabiars.com/blog/categories/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://gbabiars.github.io/robots.txt</loc>
-        <lastmod>2013-06-06T16:09:06-05:00</lastmod>
+        <loc>http://gregbabiars.com/blog/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://gregbabiars.com/humans.txt</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://gregbabiars.com/</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://gregbabiars.com/robots.txt</loc>
+        <lastmod>2013-09-03T07:04:03-05:00</lastmod>
     </url>
 </urlset>

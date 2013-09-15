@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: grunt | Greg Babiars' Blog]]></title>
-  <link href="http://gbabiars.github.io/blog/categories/grunt/atom.xml" rel="self"/>
-  <link href="http://gbabiars.github.io/"/>
-  <updated>2013-08-10T23:49:31-05:00</updated>
-  <id>http://gbabiars.github.io/</id>
+  <title><![CDATA[Category: grunt | Greg Babiars]]></title>
+  <link href="http://gregbabiars.com/blog/categories/grunt/atom.xml" rel="self"/>
+  <link href="http://gregbabiars.com/"/>
+  <updated>2013-09-03T18:30:40-05:00</updated>
+  <id>http://gregbabiars.com/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using Grunt As Your Front End Dev Server]]></title>
-    <link href="http://gbabiars.github.io/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/"/>
+    <link href="http://gregbabiars.com/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/"/>
     <updated>2013-08-04T03:35:00-05:00</updated>
-    <id>http://gbabiars.github.io/blog/2013/08/04/using-grunt-as-your-front-end-dev-server</id>
+    <id>http://gregbabiars.com/blog/2013/08/04/using-grunt-as-your-front-end-dev-server</id>
     <content type="html"><![CDATA[<h2>Need for Front End Seperation</h2>
 
 <p>For many large development projects, there is a need to seperate the front and back end development into two different projects.  The benefit here for the front end team is that they can work in html, javascript and css without having to worry about compiling new builds.  One issue that must be faced when doing this is making sure the local development enviroment can both server local static files and also connect to services that ajax calls will be connecting to.  For us, this meant serving up our backbone app while connecting to an api on one of several VMs. Originially, we used XAMPP on each devs machine to serve up the files.  The downsides of this are that it requires each machine to be manually configured and the config is not stored in the projects version control repositiory.</p>
@@ -217,9 +217,9 @@ Now if we run <code>grunt fakeServer</code> we can use the fake services to deve
   
   <entry>
     <title type="html"><![CDATA[Write Prefix-free CSS using Grunt]]></title>
-    <link href="http://gbabiars.github.io/blog/2013/07/21/write-prefix-free-css-using-grunt/"/>
+    <link href="http://gregbabiars.com/blog/2013/07/21/write-prefix-free-css-using-grunt/"/>
     <updated>2013-07-21T14:30:00-05:00</updated>
-    <id>http://gbabiars.github.io/blog/2013/07/21/write-prefix-free-css-using-grunt</id>
+    <id>http://gregbabiars.com/blog/2013/07/21/write-prefix-free-css-using-grunt</id>
     <content type="html"><![CDATA[<p>One of the most painful parts about using newer CSS3 features is the amount of prefixed styles that must be written in order to support the wide range of browsers out there.  There are many ways to alleviate this pain, including preprocessor mixins.  One of the best ways I&rsquo;ve found to eliminate this altogether is to have the prefix generation automated into your build process.  By moving prefixing to this automation step, we can write more maintainable css that will also be easier to update with future browser changes.</p>
 
 <h2>Automating using Grunt</h2>
