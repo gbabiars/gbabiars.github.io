@@ -9,7 +9,7 @@
 	<meta name="author" content="Greg Babiars">
 
 	
-	<meta name="description" content="Sep 15th, 2013 Can We Stop Saying Single Page Apps If there is just one phrase in the web development community that I wish could just go away, it &hellip;">
+	<meta name="description" content="Sep 24th, 2013 qunit, requirejs, testem Getting Testem, QUnit and RequireJS Working Together As a big believer in the rapid feedback that continuous &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,6 +107,133 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-24T19:48:00-05:00" data-updated="true" itemprop="datePublished">Sep 24<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/qunit/'>qunit</a>, <a class='category' href='/blog/categories/requirejs/'>requirejs</a>, <a class='category' href='/blog/categories/testem/'>testem</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/24/getting-testem-qunit-requirejs-working-together/" itemprop="url">Getting Testem, QUnit and RequireJS Working Together</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>As a big believer in the rapid feedback that continuous gives, I looked into a few of the options in the JavaScript space a few months ago.  At the time, I liked Karma and decided to try it out with some side projects.  It worked great with Ember and QUnit, so I decided to try getting it to work with our existing suite using RequireJS, QUnit and Backbone.  After some time trying to get it working with the adapters, I decided to use Grunt to get something good enough up and moved on.</p>
+
+<p>Fast forward to today and I was once again faced with the similar issue.  I wanted to move a newer project to RequireJS so I went head to head with Karma once again.  After a little more frustration, I decided to try <a href="https://github.com/airportyh/testem">Testem</a>.  It amazed me how little configuration was actually needed.</p>
+
+<h3>Configuring Testem</h3>
+
+<p>The first thing you&rsquo;ll need to do is install testem globally using <code>npm install -g testem</code>.  After that, you&rsquo;ll need to create a testem.json file.  For our case, we want to use the option to specify and actual html test file.  We end up with our testem.json looking like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>    "test_page": "test.html",
+</span><span class='line'>    "src_files": [
+</span><span class='line'>      // pattern for files you want to watch
+</span><span class='line'>    ],
+</span><span class='line'>    "src_files_ignore": [
+</span><span class='line'>      // pattern for files you want to ignore
+</span><span class='line'>    ]
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our test.html file will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>    <span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;html&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;components/qunit/qunit/qunit.css&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;components/qunit/qunit/qunit.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script&gt;</span>
+</span><span class='line'>            <span class="nx">QUnit</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">autostart</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/testem.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">data-main=</span><span class="s">&quot;js/test/test-main&quot;</span> <span class="na">src=</span><span class="s">&quot;components/requirejs/require.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qunit&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;qunit-fixture&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One thing to note here is that we are turning off autostart for QUnit.  This is needed to get our required files to load first.</p>
+
+<h3>Configuring RequireJS</h3>
+
+<p>Next, we need to create our test-main.js file we pointed to in the script tag above.  What we&rsquo;ll need is something like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+</span><span class='line'>        <span class="c1">// put your path, shims, etc. here</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">require</span><span class="p">([</span><span class="s1">&#39;my.test&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">QUnit</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The main part of this is the second require block where I&rsquo;m requiring and starting the tests.  Right now we have our tests statically defined and we are up and running.</p>
+
+<h3>Not there yet</h3>
+
+<p>Getting Testem running with QUnit and RequireJS turned out to be fairly simple, however, one thing we are missing is the autogenerated building of the test file that both Karma and Testem provide out of the box.  I&rsquo;ll have another post soon to discuss some solutions around that using Grunt.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
