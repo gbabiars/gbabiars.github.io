@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testem | Greg Babiars]]></title>
   <link href="http://gbabiars.github.io/blog/categories/testem/atom.xml" rel="self"/>
   <link href="http://gbabiars.github.io/"/>
-  <updated>2013-10-02T21:12:41-05:00</updated>
+  <updated>2013-11-26T06:21:50-07:00</updated>
   <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Getting Testem, QUnit and RequireJS working together]]></title>
     <link href="http://gbabiars.github.io/blog/2013/09/24/getting-testem-qunit-requirejs-working-together/"/>
-    <updated>2013-09-24T19:48:00-05:00</updated>
+    <updated>2013-09-24T19:48:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/09/24/getting-testem-qunit-requirejs-working-together</id>
     <content type="html"><![CDATA[<p>As a big believer in the rapid feedback that continuous gives, I looked into a few of the options in the JavaScript space a few months ago.  At the time, I liked Karma and decided to try it out with some side projects.  It worked great with Ember and QUnit, so I decided to try getting it to work with our existing suite using RequireJS, QUnit and Backbone.  After some time trying to get it working with the adapters, I decided to use Grunt to get something good enough up and moved on.</p>
 

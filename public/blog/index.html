@@ -9,7 +9,7 @@
 	<meta name="author" content="Greg Babiars">
 
 	
-	<meta name="description" content="Book Review: Maintainable JavaScript Oct 2nd, 2013 javascript After hearing Nicholas Zakas&#8217; great interview on JavaScript Jabber I finally &hellip;">
+	<meta name="description" content="Understanding {{this}} scoping in Ember Handlebars {{each}} blocks Nov 26th, 2013 ember.js handlebars One of the more confusing parts of using Ember &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -113,6 +113,174 @@
     <header>
   
   <h1 class="beta">
+    <a href="/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks/">Understanding {{this}} scoping in Ember Handlebars {{each}} blocks</a>
+  </h1>
+  
+
+  
+  <div class="meta clearfix">
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time class="pull-left" datetime="2013-11-26T05:30:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Nov 26<span>th</span>, 2013</time>
+    
+
+
+
+  
+  <div class="pull-left tags-wrapper">
+    <i class="icon-tags"></i>
+    <ul class="tags unstyled">
+    
+      <li><a href="/blog/categories/ember.js/">ember.js</a></li>
+    
+      <li><a href="/blog/categories/handlebars/">handlebars</a></li>
+    
+    </ul>
+  </div>
+  
+
+    
+  </div>
+  
+</header>
+
+
+
+
+  <p>One of the more confusing parts of using Ember is understanding how <code>{{this}}</code> is scoped within an <code>{{each}}</code> block in your templates.  The reason this can be so confusing is because the scope of the  block can change depending on what you are iterating over and how your controller is set up.  I will cover the three main use cases and discuss what <code>{{this}}</code> resolves to in each.</p>
+
+<h3>Case 1: {{#each model}}</h3>
+
+<p>This is the simplest case in which we are iterating over an array without explicity declaring what our variable name is.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{controller.message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case, <code>{{this}}</code> will be set to the current person in the list that is being iterated over.  The big thing to note here is that our context has changed from outside of our each block, where the context typically is the controller.  We can still access the controller inside the each block by using <code>{{controller}}</code>.  Note that we put <code>{{#each model}}</code>, but we could have used <code>{{#each controller}}</code> as well since we have an ArrayController which proxies the model property.  In a later case we&rsquo;ll see where this is an issue.</p>
+
+<h3>Case 2: {{#each person in model}}</h3>
+
+<p>In this instance we are explicity declaring the name of the current item.  Our template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each person in model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{person.name}} - {{message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller is exactly the same as Case 1.  The difference here is that {{this}} in our {{each}} block is going to be the same as our context outside of our each block, which is typically our controller.  So we can display properties on the controller in our loop without having to explicitly say they are coming from the controller.  This is my prefered method of displaying a list of items because it avoids a context switch which makes it more difficult to read.</p>
+
+<h3>Case 3: {{#each controller}} with itemController</h3>
+
+<p>In our last case, our template will be very similar to Case 1, with the exception that we will use an itemController.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each controller}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{parentController.message}} - {{selected}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller and itemController will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">itemController</span><span class="o">:</span> <span class="s1">&#39;personItem&#39;</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonItemController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ObjectController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">selected</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don&rsquo;t want to put transient data in our model, but we doesn&rsquo;t make sense in the list controller.  Another important thing to note here is that <code>{{controller}}</code> is set to our itemController and the controller outside of our each block.  To access this, we can use <code>{{parentController}}</code> which is automatically set on an itemController.</p>
+
+<h3>Summary</h3>
+
+<p>As you can see, each blocks in Ember templates can be confusing because of the variable context.  Understanding how this scoping works goes a long way to being able to select the one that fits your use case.</p>
+
+
+  </article>
+  <hr>
+
+  
+  <article class="listing">
+    <header>
+  
+  <h1 class="beta">
     <a href="/blog/2013/10/02/book-review-maintainable-javascript/">Book Review: Maintainable JavaScript</a>
   </h1>
   
@@ -131,7 +299,7 @@
   
 
 
-<time class="pull-left" datetime="2013-10-02T20:50:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Oct 2<span>nd</span>, 2013</time>
+<time class="pull-left" datetime="2013-10-02T20:50:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Oct 2<span>nd</span>, 2013</time>
     
 
 
@@ -200,7 +368,7 @@
   
 
 
-<time class="pull-left" datetime="2013-09-24T19:48:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Sep 24<span>th</span>, 2013</time>
+<time class="pull-left" datetime="2013-09-24T19:48:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Sep 24<span>th</span>, 2013</time>
     
 
 
@@ -349,7 +517,7 @@
   
 
 
-<time class="pull-left" datetime="2013-09-15T00:15:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Sep 15<span>th</span>, 2013</time>
+<time class="pull-left" datetime="2013-09-15T00:15:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Sep 15<span>th</span>, 2013</time>
     
 
 
@@ -411,7 +579,7 @@
   
 
 
-<time class="pull-left" datetime="2013-08-10T17:31:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 10<span>th</span>, 2013</time>
+<time class="pull-left" datetime="2013-08-10T17:31:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 10<span>th</span>, 2013</time>
     
 
 
@@ -555,7 +723,7 @@
   
 
 
-<time class="pull-left" datetime="2013-08-04T03:35:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 4<span>th</span>, 2013</time>
+<time class="pull-left" datetime="2013-08-04T03:35:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 4<span>th</span>, 2013</time>
     
 
 
@@ -797,7 +965,7 @@
   
 
 
-<time class="pull-left" datetime="2013-08-01T20:00:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 1<span>st</span>, 2013</time>
+<time class="pull-left" datetime="2013-08-01T20:00:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Aug 1<span>st</span>, 2013</time>
     
 
 
@@ -872,7 +1040,7 @@
   
 
 
-<time class="pull-left" datetime="2013-07-21T14:30:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Jul 21<span>st</span>, 2013</time>
+<time class="pull-left" datetime="2013-07-21T14:30:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Jul 21<span>st</span>, 2013</time>
     
 
 
@@ -990,7 +1158,7 @@
   
 
 
-<time class="pull-left" datetime="2013-06-16T20:00:00-05:00" pubdate data-updated="true"><i class="icon-calendar"></i> Jun 16<span>th</span>, 2013</time>
+<time class="pull-left" datetime="2013-06-16T20:00:00-07:00" pubdate data-updated="true"><i class="icon-calendar"></i> Jun 16<span>th</span>, 2013</time>
     
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Greg Babiars]]></title>
   <link href="http://gbabiars.github.io/atom.xml" rel="self"/>
   <link href="http://gbabiars.github.io/"/>
-  <updated>2013-10-02T21:12:41-05:00</updated>
+  <updated>2013-11-26T06:21:50-07:00</updated>
   <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -14,9 +14,131 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Understanding {{this}} scoping in Ember Handlebars {{each}} blocks]]></title>
+    <link href="http://gbabiars.github.io/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks/"/>
+    <updated>2013-11-26T05:30:00-07:00</updated>
+    <id>http://gbabiars.github.io/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks</id>
+    <content type="html"><![CDATA[<p>One of the more confusing parts of using Ember is understanding how <code>{{this}}</code> is scoped within an <code>{{each}}</code> block in your templates.  The reason this can be so confusing is because the scope of the  block can change depending on what you are iterating over and how your controller is set up.  I will cover the three main use cases and discuss what <code>{{this}}</code> resolves to in each.</p>
+
+<h3>Case 1: {{#each model}}</h3>
+
+<p>This is the simplest case in which we are iterating over an array without explicity declaring what our variable name is.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{controller.message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case, <code>{{this}}</code> will be set to the current person in the list that is being iterated over.  The big thing to note here is that our context has changed from outside of our each block, where the context typically is the controller.  We can still access the controller inside the each block by using <code>{{controller}}</code>.  Note that we put <code>{{#each model}}</code>, but we could have used <code>{{#each controller}}</code> as well since we have an ArrayController which proxies the model property.  In a later case we&rsquo;ll see where this is an issue.</p>
+
+<h3>Case 2: {{#each person in model}}</h3>
+
+<p>In this instance we are explicity declaring the name of the current item.  Our template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each person in model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{person.name}} - {{message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller is exactly the same as Case 1.  The difference here is that {{this}} in our {{each}} block is going to be the same as our context outside of our each block, which is typically our controller.  So we can display properties on the controller in our loop without having to explicitly say they are coming from the controller.  This is my prefered method of displaying a list of items because it avoids a context switch which makes it more difficult to read.</p>
+
+<h3>Case 3: {{#each controller}} with itemController</h3>
+
+<p>In our last case, our template will be very similar to Case 1, with the exception that we will use an itemController.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each controller}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{parentController.message}} - {{selected}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller and itemController will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">itemController</span><span class="o">:</span> <span class="s1">&#39;personItem&#39;</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonItemController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ObjectController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">selected</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don&rsquo;t want to put transient data in our model, but we doesn&rsquo;t make sense in the list controller.  Another important thing to note here is that <code>{{controller}}</code> is set to our itemController and the controller outside of our each block.  To access this, we can use <code>{{parentController}}</code> which is automatically set on an itemController.</p>
+
+<h3>Summary</h3>
+
+<p>As you can see, each blocks in Ember templates can be confusing because of the variable context.  Understanding how this scoping works goes a long way to being able to select the one that fits your use case.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Book Review: Maintainable JavaScript]]></title>
     <link href="http://gbabiars.github.io/blog/2013/10/02/book-review-maintainable-javascript/"/>
-    <updated>2013-10-02T20:50:00-05:00</updated>
+    <updated>2013-10-02T20:50:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/10/02/book-review-maintainable-javascript</id>
     <content type="html"><![CDATA[<p>After hearing Nicholas Zakas&#8217; great interview on <a href="http://javascriptjabber.com/075-jsj-maintainable-javascript-with-nicholas-zakas/">JavaScript Jabber</a> I finally read his book <a href="http://www.amazon.com/Maintainable-JavaScript-Nicholas-C-Zakas/dp/1449327680">Maintainable JavaScript</a>.  The book is an excellent read for any level of developer and has great tips that are mostly non-technical.  The book is broken down into three sections: Style Guidelines, Programming Practices and Automation.</p>
 
@@ -41,7 +163,7 @@
   <entry>
     <title type="html"><![CDATA[Getting Testem, QUnit and RequireJS working together]]></title>
     <link href="http://gbabiars.github.io/blog/2013/09/24/getting-testem-qunit-requirejs-working-together/"/>
-    <updated>2013-09-24T19:48:00-05:00</updated>
+    <updated>2013-09-24T19:48:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/09/24/getting-testem-qunit-requirejs-working-together</id>
     <content type="html"><![CDATA[<p>As a big believer in the rapid feedback that continuous gives, I looked into a few of the options in the JavaScript space a few months ago.  At the time, I liked Karma and decided to try it out with some side projects.  It worked great with Ember and QUnit, so I decided to try getting it to work with our existing suite using RequireJS, QUnit and Backbone.  After some time trying to get it working with the adapters, I decided to use Grunt to get something good enough up and moved on.</p>
 
@@ -142,7 +264,7 @@
   <entry>
     <title type="html"><![CDATA[Can We Stop Saying Single Page Apps]]></title>
     <link href="http://gbabiars.github.io/blog/2013/09/15/can-we-stop-saying-single-page-apps/"/>
-    <updated>2013-09-15T00:15:00-05:00</updated>
+    <updated>2013-09-15T00:15:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/09/15/can-we-stop-saying-single-page-apps</id>
     <content type="html"><![CDATA[<p>If there is just one phrase in the web development community that I wish could just go away, it would be &ldquo;Single Page Apps&rdquo;.  My big problem with the term can be misleading and uninformative.  It gives no insights into the technology behind the application.  Like HTML5, the term &ldquo;single page app&rdquo; is more of a marketing term than a technical term.</p>
 
@@ -169,7 +291,7 @@
   <entry>
     <title type="html"><![CDATA[Ember.js: Resolving Embedded Models in Nested Routes]]></title>
     <link href="http://gbabiars.github.io/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes/"/>
-    <updated>2013-08-10T17:31:00-05:00</updated>
+    <updated>2013-08-10T17:31:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/08/10/ember-dot-js-resolving-embedded-models-in-nested-routes</id>
     <content type="html"><![CDATA[<p>I recently ran into a roadblock with Ember and Ember Data where I was trying to access an embedded model for a nested route.  What I wanted to do was return one of the elements of an array in the model from the parent route as my model for the nested route.  The solution ended up being fairly simple.</p>
 
@@ -269,7 +391,7 @@
   <entry>
     <title type="html"><![CDATA[Using Grunt As Your Front End Dev Server]]></title>
     <link href="http://gbabiars.github.io/blog/2013/08/04/using-grunt-as-your-front-end-dev-server/"/>
-    <updated>2013-08-04T03:35:00-05:00</updated>
+    <updated>2013-08-04T03:35:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/08/04/using-grunt-as-your-front-end-dev-server</id>
     <content type="html"><![CDATA[<h2>Need for Front End Seperation</h2>
 
@@ -467,7 +589,7 @@
   <entry>
     <title type="html"><![CDATA[The Myths of Backbone.js]]></title>
     <link href="http://gbabiars.github.io/blog/2013/08/01/the-myths-of-backbone-dot-js/"/>
-    <updated>2013-08-01T20:00:00-05:00</updated>
+    <updated>2013-08-01T20:00:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/08/01/the-myths-of-backbone-dot-js</id>
     <content type="html"><![CDATA[<p>When it comes to building javascript centric web apps, it&rsquo;s hard to argue with the popularity of Backbone.  It has played a big part in shifting client side javascript apps from being jQuery spaghetti to well structured, more maintainable pieces of software.  It has helped move developers away from &ldquo;truth in DOM&rdquo; and towards keeping record stores in the javascript application itself.  While it has done so much, an amazing achievement for such a relatively small library, there is a lot of misinformation about Backbone that exists in the web community.</p>
 
@@ -498,7 +620,7 @@
   <entry>
     <title type="html"><![CDATA[Write Prefix-free CSS using Grunt]]></title>
     <link href="http://gbabiars.github.io/blog/2013/07/21/write-prefix-free-css-using-grunt/"/>
-    <updated>2013-07-21T14:30:00-05:00</updated>
+    <updated>2013-07-21T14:30:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/07/21/write-prefix-free-css-using-grunt</id>
     <content type="html"><![CDATA[<p>One of the most painful parts about using newer CSS3 features is the amount of prefixed styles that must be written in order to support the wide range of browsers out there.  There are many ways to alleviate this pain, including preprocessor mixins.  One of the best ways I&rsquo;ve found to eliminate this altogether is to have the prefix generation automated into your build process.  By moving prefixing to this automation step, we can write more maintainable css that will also be easier to update with future browser changes.</p>
 
@@ -570,7 +692,7 @@
   <entry>
     <title type="html"><![CDATA[Reusable Formatting Using Ember Handlebars Helpers]]></title>
     <link href="http://gbabiars.github.io/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers/"/>
-    <updated>2013-06-16T20:00:00-05:00</updated>
+    <updated>2013-06-16T20:00:00-07:00</updated>
     <id>http://gbabiars.github.io/blog/2013/06/16/reusable-formatting-using-ember-handlebars-helpers</id>
     <content type="html"><![CDATA[<p>One of the great things about Ember is that it uses Handlebars as its default template engine.  Handlebars allows you to create a very declarative yet powerful UI through it&rsquo;s built in helpers like <code>{{each}}</code> and <code>{{if}}</code>.  Ember has also extended Handlebars with helpers like <code>{{view}}</code> and <code>{{render}}</code> as well.  While these helpers go a long way, Ember allows us to easily create our own custom helpers.  This allows us to build a UI that is very expressive while also DRYing up our application.  A great way to utilize this feature is by moving common formatting of values and types into helpers.</p>
 

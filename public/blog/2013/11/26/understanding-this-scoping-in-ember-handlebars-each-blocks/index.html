@@ -1,0 +1,274 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Understanding {{this}} scoping in Ember Handlebars {{each}} blocks - Greg Babiars</title>
+	<meta name="author" content="Greg Babiars">
+
+	
+	<meta name="description" content="Understanding {{this}} Scoping in Ember Handlebars {{each}} Blocks One of the more confusing parts of using Ember is understanding how {{this}} is &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Greg Babiars" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://gbabiars.github.io/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-43757005-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("gbabiars@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">Greg Babiars</a></h1>
+  
+</hgroup>
+
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    I'm a software developer with a front end focus living in Panama City, FL.  I'm passionate about javascript and web technologies and a diehard Arizona Wildcats fan.
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/gbabiars" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/gbabiars" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Understanding {{this}} Scoping in Ember Handlebars {{each}} Blocks</h1>
+	<div class="entry-content" itemprop="articleBody"><p>One of the more confusing parts of using Ember is understanding how <code>{{this}}</code> is scoped within an <code>{{each}}</code> block in your templates.  The reason this can be so confusing is because the scope of the  block can change depending on what you are iterating over and how your controller is set up.  I will cover the three main use cases and discuss what <code>{{this}}</code> resolves to in each.</p>
+
+<h3>Case 1: {{#each model}}</h3>
+
+<p>This is the simplest case in which we are iterating over an array without explicity declaring what our variable name is.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{controller.message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case, <code>{{this}}</code> will be set to the current person in the list that is being iterated over.  The big thing to note here is that our context has changed from outside of our each block, where the context typically is the controller.  We can still access the controller inside the each block by using <code>{{controller}}</code>.  Note that we put <code>{{#each model}}</code>, but we could have used <code>{{#each controller}}</code> as well since we have an ArrayController which proxies the model property.  In a later case we&rsquo;ll see where this is an issue.</p>
+
+<h3>Case 2: {{#each person in model}}</h3>
+
+<p>In this instance we are explicity declaring the name of the current item.  Our template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each person in model}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{person.name}} - {{message}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller is exactly the same as Case 1.  The difference here is that {{this}} in our {{each}} block is going to be the same as our context outside of our each block, which is typically our controller.  So we can display properties on the controller in our loop without having to explicitly say they are coming from the controller.  This is my prefered method of displaying a list of items because it avoids a context switch which makes it more difficult to read.</p>
+
+<h3>Case 3: {{#each controller}} with itemController</h3>
+
+<p>In our last case, our template will be very similar to Case 1, with the exception that we will use an itemController.  The template will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>{{#each controller}}
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>{{this.name}} - {{parentController.message}} - {{selected}}<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>{{/each}}
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our controller and itemController will look like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">itemController</span><span class="o">:</span> <span class="s1">&#39;personItem&#39;</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John Doe&#39;</span> <span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bob Jones&#39;</span> <span class="p">}</span>          
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'>  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">PersonItemController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ObjectController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">selected</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don&rsquo;t want to put transient data in our model, but we doesn&rsquo;t make sense in the list controller.  Another important thing to note here is that <code>{{controller}}</code> is set to our itemController and the controller outside of our each block.  To access this, we can use <code>{{parentController}}</code> which is automatically set on an itemController.</p>
+
+<h3>Summary</h3>
+
+<p>As you can see, each blocks in Ember templates can be confusing because of the variable context.  Understanding how this scoping works goes a long way to being able to select the one that fits your use case.</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Greg Babiars -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
