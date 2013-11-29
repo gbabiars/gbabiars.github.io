@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding {{this}} scoping in Ember Handlebars {{each}} blocks"
-date: 2013-11-26 05:30
+date: 2013-11-28 10:30
 comments: true
 categories: [ember.js, handlebars]
 ---
