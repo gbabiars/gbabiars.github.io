@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ember.js | Greg Babiars]]></title>
   <link href="http://gbabiars.github.io/blog/categories/ember-dot-js/atom.xml" rel="self"/>
   <link href="http://gbabiars.github.io/"/>
-  <updated>2013-11-29T11:27:36-07:00</updated>
+  <updated>2013-11-29T11:30:48-07:00</updated>
   <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -110,9 +110,9 @@ In order to respond to changes of the input and get the unformatted value back t
   
   <entry>
     <title type="html"><![CDATA[Understanding  scoping in Ember Handlebars  blocks]]></title>
-    <link href="http://gbabiars.github.io/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks/"/>
-    <updated>2013-11-26T05:30:00-07:00</updated>
-    <id>http://gbabiars.github.io/blog/2013/11/26/understanding-this-scoping-in-ember-handlebars-each-blocks</id>
+    <link href="http://gbabiars.github.io/blog/2013/11/28/understanding-this-scoping-in-ember-handlebars-each-blocks/"/>
+    <updated>2013-11-28T10:30:00-07:00</updated>
+    <id>http://gbabiars.github.io/blog/2013/11/28/understanding-this-scoping-in-ember-handlebars-each-blocks</id>
     <content type="html"><![CDATA[<p>One of the more confusing parts of using Ember is understanding how <code>{{this}}</code> is scoped within an <code>{{each}}</code> block in your templates.  The reason this can be so confusing is because the scope of the  block can change depending on what you are iterating over and how your controller is set up.  I will cover the three main use cases and discuss what <code>{{this}}</code> resolves to in each.</p>
 
 <h3>Case 1: {{#each model}}</h3>
