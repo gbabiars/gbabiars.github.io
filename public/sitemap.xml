@@ -47,8 +47,14 @@
         <lastmod>2013-11-26T06:16:08-07:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://gbabiars.github.io/blog/2013/11/29/formatted-text-fields-in-ember-dot-js/
+        </loc>
+        <lastmod>2013-11-29T11:26:40-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://gbabiars.github.io/blog/archives/</loc>
-        <lastmod>2013-11-26T06:16:08-07:00</lastmod>
+        <lastmod>2013-11-29T11:26:40-07:00</lastmod>
     </url>
     <url>
         <loc>http://gbabiars.github.io/blog/categories/</loc>
@@ -56,7 +62,7 @@
     </url>
     <url>
         <loc>http://gbabiars.github.io/blog/</loc>
-        <lastmod>2013-11-26T06:16:08-07:00</lastmod>
+        <lastmod>2013-11-29T11:26:40-07:00</lastmod>
     </url>
     <url>
         <loc>http://gbabiars.github.io/humans.txt</loc>
@@ -64,7 +70,7 @@
     </url>
     <url>
         <loc>http://gbabiars.github.io/</loc>
-        <lastmod>2013-11-26T06:16:08-07:00</lastmod>
+        <lastmod>2013-11-29T11:26:40-07:00</lastmod>
     </url>
     <url>
         <loc>http://gbabiars.github.io/robots.txt</loc>
