@@ -76,7 +76,7 @@ App.PersonItemController = Em.ObjectController.extend({
 });
 {% endcodeblock %}
 
-The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don't want to put transient data in our model, but we doesn't make sense in the list controller.  Another important thing to note here is that `{% raw %}{{controller}}{% endraw %}` is set to our itemController and the controller outside of our each block.  To access this, we can use `{% raw %}{{parentController}}{% endraw %}` which is automatically set on an itemController.
+The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don't want to put transient data in our model, but we doesn't make sense in the list controller.  Another important thing to note here is that `{% raw %}{{controller}}{% endraw %}` is set to our itemController instead of the controller outside of our each block.  To access this, we can use `{% raw %}{{parentController}}{% endraw %}` which is automatically set on an itemController.
 
 ###Summary
 As you can see, each blocks in Ember templates can be confusing because of the variable context.  Understanding how this scoping works goes a long way to being able to select the one that fits your use case.

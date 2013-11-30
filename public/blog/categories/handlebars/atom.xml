@@ -4,7 +4,7 @@
   <title><![CDATA[Category: handlebars | Greg Babiars]]></title>
   <link href="http://gbabiars.github.io/blog/categories/handlebars/atom.xml" rel="self"/>
   <link href="http://gbabiars.github.io/"/>
-  <updated>2013-11-29T11:30:48-07:00</updated>
+  <updated>2013-11-30T08:23:10-07:00</updated>
   <id>http://gbabiars.github.io/</id>
   <author>
     <name><![CDATA[Greg Babiars]]></name>
@@ -165,7 +165,7 @@
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don&rsquo;t want to put transient data in our model, but we doesn&rsquo;t make sense in the list controller.  Another important thing to note here is that <code>{{controller}}</code> is set to our itemController and the controller outside of our each block.  To access this, we can use <code>{{parentController}}</code> which is automatically set on an itemController.</p>
+<p>The big difference with this is that we are able to add controller logic to each item in the list.  This is often important because we don&rsquo;t want to put transient data in our model, but we doesn&rsquo;t make sense in the list controller.  Another important thing to note here is that <code>{{controller}}</code> is set to our itemController instead of the controller outside of our each block.  To access this, we can use <code>{{parentController}}</code> which is automatically set on an itemController.</p>
 
 <h3>Summary</h3>
 
